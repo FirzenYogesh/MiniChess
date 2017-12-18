@@ -48,7 +48,7 @@ public class ChessBoard {
             String name = tempStrings[0];
             String move = tempStrings[1];
             ChessPiece pieceMoved = ChessPieceUtils.noPiece;
-            Position newPosition = Position.out;
+            Position oldPosition = Position.out;
             Position currentPosition = Position.out;
             if (isPlayer1Move) {
                 for (ChessPiece player1Piece : player1Pieces) {
@@ -62,7 +62,7 @@ public class ChessBoard {
                                     player1Piece.killPiece(getEnemy(player1Piece.getNewPosition()));
                                 }
                                 moveSuccessful = player1Piece.move(chessBlocks, move, ChessPieceUtils.player1);
-                                newPosition = player1Piece.getNewPosition();
+                                oldPosition = player1Piece.getNewPosition();
                                 currentPosition = player1Piece.getCurrentPosition();
                             }
                             pieceMoved = player1Piece;
@@ -84,6 +84,8 @@ public class ChessBoard {
                                     player2Piece.killPiece(getEnemy(player2Piece.getNewPosition()));
                                 }
                                 moveSuccessful = player2Piece.move(chessBlocks, move, ChessPieceUtils.player1);
+                                oldPosition = player2Piece.getOldPosition();
+                                currentPosition = player2Piece.getCurrentPosition();
                             }
                             pieceMoved = player2Piece;
                         } else {
@@ -95,8 +97,8 @@ public class ChessBoard {
             }
             if (moveSuccessful) {
                 isPlayer1Move = !isPlayer1Move;
-                chessBlocks[pieceMoved.getOldPosition().getRow()][pieceMoved.getOldPosition().getColumn()] = ChessPieceUtils.noPiece;
-                chessBlocks[pieceMoved.getCurrentPosition().getRow()][pieceMoved.getCurrentPosition().getColumn()] = pieceMoved;
+                chessBlocks[oldPosition.getRow()][oldPosition.getColumn()] = ChessPieceUtils.noPiece;
+                chessBlocks[currentPosition.getRow()][currentPosition.getColumn()] = pieceMoved;
             }
         } else {
             System.out.println("Invalid Move. Invalid Format");
