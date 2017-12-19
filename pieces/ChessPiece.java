@@ -22,33 +22,9 @@ public abstract class ChessPiece {
 
     public abstract boolean move(ChessPiece[][] block, String move);
 
-    //abstract boolean isMoveWithinTheBoard();
-
     public abstract boolean isMoveValid(String move);
 
     abstract void getNewPosition(String move);
-
-    /*boolean isFriendlyPiece(ChessPiece[][] blocks) {
-        return !blocks[newPosition.row][newPosition.column].player.equals("")
-                && blocks[newPosition.row][newPosition.column].player.equals(player)
-                && !blocks[newPosition.row][newPosition.column].isKilled;
-    }
-
-    boolean isEnemyPiece(ChessPiece[][] blocks) {
-        return blocks[newPosition.row][newPosition.column].player != null
-                && !blocks[newPosition.row][newPosition.column].player.equals(player);
-    }
-
-    void removePiece(ChessPiece[][] blocks, Position position) {
-        if (blocks[position.row][position.column].player.equals(ChessPieceUtils.player1)) {
-            ChessPieceUtils.player1PiecesLeft--;
-            ChessPieceUtils.player2Score++;
-        } else {
-            ChessPieceUtils.player2PiecesLeft--;
-            ChessPieceUtils.player1Score++;
-        }
-        blocks[position.row][position.column].isKilled = true;
-    }*/
 
     public void killPiece(ChessPiece piece) {
         if (!player.equals(piece.player) && !piece.name.equals("-")) {
