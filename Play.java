@@ -3,6 +3,9 @@ import pieces.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The Driver Class to Play the game
+ */
 public class Play {
 
     public static void main(String[] args) {
@@ -48,6 +51,13 @@ public class Play {
         }
     }
 
+    /**
+     * Get ChessPieces from the user
+     *
+     * @param numberOfPieces Number of pieces for each player
+     * @param player         The player for which the input is to be received
+     * @return Array of ChessPiece with the user specified pieces
+     */
     private static ChessPiece[] getPlayerPieces(int numberOfPieces, String player) {
         Scanner scanner = new Scanner(System.in);
         ChessPiece[] pieces = new ChessPiece[numberOfPieces];

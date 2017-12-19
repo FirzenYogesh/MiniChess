@@ -1,5 +1,8 @@
 package pieces;
 
+/**
+ * A Utility Class for the game
+ */
 public class ChessPieceUtils {
     public static final ChessPiece noPiece = new PieceDummy();
     public static final String player1 = "A";

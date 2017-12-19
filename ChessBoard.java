@@ -2,6 +2,10 @@ import pieces.ChessPiece;
 import pieces.ChessPieceUtils;
 import pieces.Position;
 
+/**
+ * The ChessBoard Class
+ * It tracks the player movement, updates the movement, display the board
+ */
 public class ChessBoard {
 
     private ChessPiece[][] chessBlocks;
@@ -28,6 +32,9 @@ public class ChessBoard {
         }
     }
 
+    /**
+     * Display the current ChessBoard
+     */
     public void displayBoard() {
         for (int i = 0; i < rowSize; i++) {
             for (int j = 0; j < columnSize; j++) {
@@ -41,6 +48,12 @@ public class ChessBoard {
         }
     }
 
+    /**
+     * Move a Piece from the ChessBoard based on current player
+     *
+     * @param command The Full Move Command
+     * @return true if a piece was moved else false
+     */
     public boolean moveAPiece(String command) {
         boolean moveSuccessful = false;
         if (isValidCommandFormat(command)) {
@@ -67,7 +80,7 @@ public class ChessBoard {
                                         System.out.println();
                                     } else {
                                         if (hasEnemy(player1Piece.getNewPosition(), player1Piece)) {
-                                            player1Piece.killPiece(getEnemy(player1Piece.getNewPosition()));
+                                            player1Piece.killPiece(getPiece(player1Piece.getNewPosition()));
                                         }
                                         moveSuccessful = player1Piece.move(chessBlocks, move);
                                         oldPosition = player1Piece.getOldPosition();
@@ -101,7 +114,7 @@ public class ChessBoard {
                                         System.out.println();
                                     } else {
                                         if (hasEnemy(player2Piece.getNewPosition(), player2Piece)) {
-                                            player2Piece.killPiece(getEnemy(player2Piece.getNewPosition()));
+                                            player2Piece.killPiece(getPiece(player2Piece.getNewPosition()));
                                         }
                                         moveSuccessful = player2Piece.move(chessBlocks, move);
                                         oldPosition = player2Piece.getOldPosition();
@@ -134,6 +147,12 @@ public class ChessBoard {
 
     //private boolean isMoveWithinTheBoard()//
 
+    /**
+     * Method to check if the given command follows the specified format
+     *
+     * @param command Full Move Command
+     * @return true if the command is valid else false
+     */
     private boolean isValidCommandFormat(String command) {
         if (command.contains(":")) {
             String[] tempStrings = command.split(":");
@@ -142,6 +161,12 @@ public class ChessBoard {
         return false;
     }
 
+    /**
+     * Method to check if the Move that is to be made is within the boundary
+     *
+     * @param piece The ChessPiece to move
+     * @return true if within the Board else false
+     */
     private boolean isMoveWithinTheBoard(ChessPiece piece) {
         return piece.getNewPosition().getRow() >= 0
                 && piece.getNewPosition().getRow() < rowSize
@@ -149,6 +174,13 @@ public class ChessBoard {
                 && piece.getNewPosition().getColumn() < columnSize;
     }
 
+    /**
+     * Method to check if the Move that is to be made has a friendly piece in that block
+     *
+     * @param position The position of the Block to check
+     * @param piece    The Piece That is being moved
+     * @return true if a friendly piece is present else false
+     */
     private boolean hasFriendly(Position position, ChessPiece piece) {
         if (piece.isKilled())
             return false;
@@ -158,6 +190,13 @@ public class ChessBoard {
                 !piece.isKilled();
     }
 
+    /**
+     * Method to check if the Move that is to be made has a enemy piece in that block
+     *
+     * @param position The position of the Block to check
+     * @param piece    The Piece That is being moved
+     * @return true if a enemy piece is present else false
+     */
     private boolean hasEnemy(Position position, ChessPiece piece) {
         if (piece.isKilled())
             return false;
@@ -167,10 +206,22 @@ public class ChessBoard {
                 !piece.isKilled();
     }
 
-    private ChessPiece getEnemy(Position position) {
+    /**
+     * Get the Piece present at the given position
+     *
+     * @param position The position from which the ChessPiece is to be fetched
+     * @return The ChessPiece present in the given Position
+     */
+    private ChessPiece getPiece(Position position) {
         return chessBlocks[position.getRow()][position.getColumn()];
     }
 
+    /**
+     * Method to check if the given ChessPiece is removed from the board or not
+     *
+     * @param piece The ChessPiece to check
+     * @return true if the ChessPiece is removed else false
+     */
     private boolean isPieceRemoved(ChessPiece piece) {
         return piece.isKilled();
     }
@@ -191,7 +242,7 @@ public class ChessBoard {
                         System.out.println();
                     } else {
                         if (hasEnemy(piece.getNewPosition(), piece)) {
-                            piece.killPiece(getEnemy(piece.getNewPosition()));
+                            piece.killPiece(getPiece(piece.getNewPosition()));
                         }
                         moveSuccessful = piece.move(chessBlocks, move);
                     }

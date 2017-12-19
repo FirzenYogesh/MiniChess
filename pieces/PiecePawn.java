@@ -1,5 +1,9 @@
 package pieces;
 
+/**
+ * The Pawn Piece derived from ChessPiece
+ * Pawn Moves 1 step at a time either in Front or Back or Right or Left
+ */
 public class PiecePawn extends ChessPiece {
 
     public PiecePawn(String name, String player, Position position) {

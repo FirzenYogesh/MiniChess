@@ -1,5 +1,10 @@
 package pieces;
 
+/**
+ * The Castle Chess Piece derived from ChessPiece
+ * The Castle Moves 2 Steps at a time either in Front or Back or Right or Left
+ * The Castle Kills all the enemies who are in the way
+ */
 public class PieceCastle extends ChessPiece {
 
 

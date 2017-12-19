@@ -1,3 +1,7 @@
+/**
+ * The ChessPieceProvider Class
+ * This class provides data on how many each ChessPiece of different types must be placed on the board
+ */
 public class ChessPieceProvider {
     int numberOfPawns = 3;
     int numberOfCastle = 1;

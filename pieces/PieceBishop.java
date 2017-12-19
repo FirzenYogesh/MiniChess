@@ -1,5 +1,10 @@
 package pieces;
 
+/**
+ * The Bishop Chess Piece derived from ChessPiece
+ * The Bishop Moves 2 Steps Diagonally either in front or back
+ * The Bishop Kills all the enemies who are in the way
+ */
 public class PieceBishop extends ChessPiece {
 
 

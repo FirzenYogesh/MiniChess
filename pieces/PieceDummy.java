@@ -1,5 +1,9 @@
 package pieces;
 
+/**
+ * The Dummy Chess Piece derived from ChessPiece
+ * This is a special piece which does nothing :p
+ */
 public class PieceDummy extends ChessPiece {
     public PieceDummy() {
         super("-", "");
