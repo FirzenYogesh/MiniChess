@@ -150,6 +150,8 @@ public class ChessBoard {
     }
 
     private boolean hasFriendly(Position position, ChessPiece piece) {
+        if (piece.isKilled())
+            return false;
         ChessPiece blockToCheck = chessBlocks[position.getRow()][position.getColumn()];
         return !blockToCheck.getName().equals("-") &&
                 blockToCheck.getPlayer().equals(piece.getPlayer()) &&
@@ -157,6 +159,8 @@ public class ChessBoard {
     }
 
     private boolean hasEnemy(Position position, ChessPiece piece) {
+        if (piece.isKilled())
+            return false;
         ChessPiece blockToCheck = chessBlocks[position.getRow()][position.getColumn()];
         return !blockToCheck.getName().equals("-") &&
                 !blockToCheck.getPlayer().equals(piece.getPlayer()) &&

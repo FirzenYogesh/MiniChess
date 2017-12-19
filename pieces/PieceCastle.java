@@ -70,38 +70,38 @@ public class PieceCastle extends ChessPiece {
     @Override
     void getNewPosition(String move) {
         newPosition = new Position(currentPosition);
-        //System.out.println(newPosition);
+        System.out.println(newPosition);
         switch (move.toLowerCase()) {
             case "f":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.row += -2;
                 } else {
                     newPosition.row += 2;
                 }
                 break;
             case "b":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.row += 2;
                 } else {
                     newPosition.row += -2;
                 }
                 break;
             case "l":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.column += -2;
                 } else {
                     newPosition.column += 2;
                 }
                 break;
             case "r":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.column += 2;
                 } else {
                     newPosition.column += -2;
                 }
                 break;
         }
-        //System.out.println(newPosition);
+        System.out.println(newPosition);
     }
 
 

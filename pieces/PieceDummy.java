@@ -5,12 +5,14 @@ public class PieceDummy extends ChessPiece {
         super("-", "");
         stepsToMove = 0;
         movementType = MovementType.NONE;
+        isKilled = true;
     }
 
     public PieceDummy(String player) {
         super("-", player);
         stepsToMove = 0;
         movementType = MovementType.NONE;
+        isKilled = true;
     }
 
     @Override
