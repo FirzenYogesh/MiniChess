@@ -127,10 +127,6 @@ public class Play {
             }
             i++;
         }
-        /*for (int i = 0; i < numberOfPieces; i++) {
-
-            //pieces[i] = new PieceCastle(name, ChessPieceUtils.player1, new Position(numberOfPieces - 1, i));
-        }*/
         return pieces;
     }
 }
