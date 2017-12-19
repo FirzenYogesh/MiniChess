@@ -62,7 +62,7 @@ public class ChessBoard {
                                     player1Piece.killPiece(getEnemy(player1Piece.getNewPosition()));
                                 }
                                 moveSuccessful = player1Piece.move(chessBlocks, move, ChessPieceUtils.player1);
-                                oldPosition = player1Piece.getNewPosition();
+                                oldPosition = player1Piece.getOldPosition();
                                 currentPosition = player1Piece.getCurrentPosition();
                             }
                             pieceMoved = player1Piece;
@@ -83,7 +83,7 @@ public class ChessBoard {
                                 if (hasEnemy(player2Piece.getNewPosition(), player2Piece)) {
                                     player2Piece.killPiece(getEnemy(player2Piece.getNewPosition()));
                                 }
-                                moveSuccessful = player2Piece.move(chessBlocks, move, ChessPieceUtils.player1);
+                                moveSuccessful = player2Piece.move(chessBlocks, move, ChessPieceUtils.player2);
                                 oldPosition = player2Piece.getOldPosition();
                                 currentPosition = player2Piece.getCurrentPosition();
                             }
@@ -125,12 +125,16 @@ public class ChessBoard {
 
     private boolean hasFriendly(Position position, ChessPiece piece) {
         ChessPiece blockToCheck = chessBlocks[position.getRow()][position.getColumn()];
-        return blockToCheck.getPlayer().equals(piece.getPlayer());
+        return !blockToCheck.getName().equals("-") &&
+                blockToCheck.getPlayer().equals(piece.getPlayer()) &&
+                !piece.isKilled();
     }
 
     private boolean hasEnemy(Position position, ChessPiece piece) {
         ChessPiece blockToCheck = chessBlocks[position.getRow()][position.getColumn()];
-        return !blockToCheck.getPlayer().equals(piece.getPlayer());
+        return !blockToCheck.getName().equals("-") &&
+                !blockToCheck.getPlayer().equals(piece.getPlayer()) &&
+                !piece.isKilled();
     }
 
     private ChessPiece getEnemy(Position position) {

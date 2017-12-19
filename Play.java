@@ -16,12 +16,20 @@ public class Play {
         rowSize = scanner.nextInt();
         System.out.println("Enter the Column Size of the Chess Board");
         colSize = scanner.nextInt();
+        ChessPieceUtils.player1PiecesLeft = colSize;
+        ChessPieceUtils.player2PiecesLeft = colSize;
         scanner.nextLine();
         System.out.println();
         System.out.println("Enter Player 1 (P1) Pieces");
         for (int i = 0; i < colSize; i++) {
             System.out.println("Enter the name of the piece");
             String name = scanner.nextLine();
+            name = name.trim();
+            while (name.equals("") || name.equals("\n")) {
+                System.out.println("Please enter a valid Character name");
+                name = scanner.nextLine();
+                name = name.trim();
+            }
             player1Pieces[i] = new PiecePawn(name, ChessPieceUtils.player1, new Position(rowSize - 1, i));
         }
         System.out.println();
@@ -29,6 +37,12 @@ public class Play {
         for (int i = colSize - 1; i >= 0; i--) {
             System.out.println("Enter the name of the piece");
             String name = scanner.nextLine();
+            name = name.trim();
+            while (name.equals("") || name.equals("\n")) {
+                System.out.println("Please enter a valid Character name");
+                name = scanner.nextLine();
+                name = name.trim();
+            }
             player2Pieces[i] = new PiecePawn(name, ChessPieceUtils.player2, new Position(0, i));
         }
         ChessBoard chessBoard = new ChessBoard(player1Pieces, player2Pieces, rowSize, colSize);

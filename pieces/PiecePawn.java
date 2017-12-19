@@ -15,6 +15,8 @@ public class PiecePawn extends ChessPiece {
         if (isMoveValid(move)) {
             oldPosition = new Position(currentPosition);
             currentPosition = new Position(newPosition);
+            System.out.println(currentPosition);
+            return true;
         } else {
             System.out.println("Invalid move. Pawn should be commanded only one of the following: ");
             System.out.println("f or b or l or r");
@@ -43,7 +45,7 @@ public class PiecePawn extends ChessPiece {
     @Override
     void getNewPosition(String move) {
         newPosition = new Position(currentPosition);
-        System.out.println(newPosition);
+        //System.out.println(newPosition);
         switch (move.toLowerCase()) {
             case "f":
                 if (player.equals(ChessPieceUtils.player1)) {
@@ -74,6 +76,6 @@ public class PiecePawn extends ChessPiece {
                 }
                 break;
         }
-        System.out.println(newPosition);
+        //System.out.println(newPosition);
     }
 }

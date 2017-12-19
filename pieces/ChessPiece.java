@@ -52,9 +52,16 @@ public abstract class ChessPiece {
 
     public void killPiece(ChessPiece piece) {
         piece.isKilled = true;
-        currentPosition = Position.out;
-        newPosition = Position.out;
-        oldPosition = Position.out;
+        piece.currentPosition = Position.out;
+        piece.newPosition = Position.out;
+        piece.oldPosition = Position.out;
+        if (piece.player.equals(ChessPieceUtils.player1)) {
+            ChessPieceUtils.player1PiecesLeft--;
+            ChessPieceUtils.player2Score++;
+        } else {
+            ChessPieceUtils.player2PiecesLeft--;
+            ChessPieceUtils.player1Score++;
+        }
     }
 
     public boolean isKilled() {
