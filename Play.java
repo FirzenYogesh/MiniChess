@@ -12,68 +12,19 @@ public class Play {
             System.out.println("Enter the number of pieces (min 5): ");
             numberOfPieces = scanner.nextInt();
         }
-        ChessPiece[] player1Pieces = new ChessPiece[numberOfPieces];
-        ChessPiece[] player2Pieces = new ChessPiece[numberOfPieces];
+        ChessPiece[] player1Pieces;
+        ChessPiece[] player2Pieces;
         ChessPieceUtils.player1PiecesLeft = numberOfPieces;
         ChessPieceUtils.player2PiecesLeft = numberOfPieces;
         scanner.nextLine();
+        System.out.println("Pieces Allowed in the game: " + ChessPieceProvider.provideChessPieces(numberOfPieces));
         System.out.println();
         System.out.println("Enter Player 1 (P1) Pieces");
         player1Pieces = getPlayerPieces(numberOfPieces, ChessPieceUtils.player1);
-        /*ArrayList<String> tempList = new ArrayList<>();
-        ChessPieceProvider provider = ChessPieceProvider.provideChessPieces(numberOfPieces);
-        for (int i = 0; i < numberOfPieces; i++) {
-            System.out.println("Enter the Piece Type:\np for Pawn\nc for Castle\nb for Bishop\n");
-            String pieceType = scanner.nextLine().trim();
-            while (!pieceType.toLowerCase().equals("p") || !pieceType.toLowerCase().equals("c") || !pieceType.toLowerCase().equals("b")) {
-                System.out.println("Enter a valid Piece Type");
-                pieceType = scanner.nextLine().trim();
-            }
-            switch (pieceType.toLowerCase()) {
-                case "p":
-                    provider.numberOfPawns--;
-                    break;
-                case "c":
-                    provider.numberOfBishop--;
-                    break;
-                case "b":
-                    provider.numberOfCastle--;
-                    break;
-            }
-            System.out.println("Enter the name of the piece");
-            String name = scanner.nextLine().trim();
-            while (name.equals("") || name.equals("\n")) {
-                System.out.println("Please enter a valid Character name");
-                name = scanner.nextLine().trim();
-            }
-            while (tempList.contains(name)) {
-                System.out.println("Please enter a Unique Character name");
-                name = scanner.nextLine().trim();
-            }
-            tempList.add(name);
-            player1Pieces[i] = new PieceCastle(name, ChessPieceUtils.player1, new Position(numberOfPieces - 1, i));
-        }
-        tempList = new ArrayList<>();*/
         System.out.println();
         System.out.println("Enter Player 2 (P2) Pieces");
         player2Pieces = getPlayerPieces(numberOfPieces, ChessPieceUtils.player2);
-        /*for (int i = numberOfPieces - 1; i >= 0; i--) {
-            System.out.println("Enter the name of the piece");
-            String name = scanner.nextLine();
-            name = name.trim();
-            while (name.equals("") || name.equals("\n")) {
-                System.out.println("Please enter a valid Character name");
-                name = scanner.nextLine();
-                name = name.trim();
-            }
-            while (tempList.contains(name)) {
-                System.out.println("Please enter a Unique Character name");
-                name = scanner.nextLine();
-                name = name.trim();
-            }
-            tempList.add(name);
-            player2Pieces[i] = new PieceCastle(name, ChessPieceUtils.player2, new Position(0, i));
-        }*/
+
         ChessBoard chessBoard = new ChessBoard(player1Pieces, player2Pieces, numberOfPieces, numberOfPieces);
         while (ChessPieceUtils.player1PiecesLeft > 0 && ChessPieceUtils.player2PiecesLeft > 0) {
             System.out.println();
@@ -159,11 +110,11 @@ public class Play {
                     piece = new PiecePawn(name, player, position);
                     break;
                 case "c":
-                    provider.numberOfBishop--;
+                    provider.numberOfCastle--;
                     piece = new PieceCastle(name, player, position);
                     break;
                 case "b":
-                    provider.numberOfCastle--;
+                    provider.numberOfBishop--;
                     piece = new PieceBishop(name, player, position);
                     break;
                 default:
