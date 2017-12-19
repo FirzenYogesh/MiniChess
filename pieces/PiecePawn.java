@@ -11,14 +11,15 @@ public class PiecePawn extends ChessPiece {
     }
 
     @Override
-    public boolean move(ChessPiece[][] blocks, String move, String player) {
-        if (isMoveValid(move)) {
-            oldPosition = new Position(currentPosition);
-            currentPosition = new Position(newPosition);
-            //System.out.println(currentPosition);
-            return true;
+    public boolean move(ChessPiece[][] block, String move) {
+        /*if (isMoveValid(move)) {
+
         }
-        return false;
+        return false;*/
+        oldPosition = new Position(currentPosition);
+        currentPosition = new Position(newPosition);
+        //System.out.println(currentPosition);
+        return true;
     }
 
     @Override
@@ -35,8 +36,10 @@ public class PiecePawn extends ChessPiece {
             case "r":
                 return true;
             default:
+                System.out.println();
                 System.out.println("Invalid move. Pawn should be commanded only one of the following: ");
                 System.out.println("f or b or l or r");
+                System.out.println();
                 return false;
         }
     }
@@ -47,28 +50,28 @@ public class PiecePawn extends ChessPiece {
         //System.out.println(newPosition);
         switch (move.toLowerCase()) {
             case "f":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.row += -1;
                 } else {
                     newPosition.row += 1;
                 }
                 break;
             case "b":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.row += 1;
                 } else {
                     newPosition.row += -1;
                 }
                 break;
             case "l":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.column += -1;
                 } else {
                     newPosition.column += 1;
                 }
                 break;
             case "r":
-                if (player.equals(ChessPieceUtils.player1)) {
+                if (isPlayer1()) {
                     newPosition.column += 1;
                 } else {
                     newPosition.column += -1;

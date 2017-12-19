@@ -1,21 +1,18 @@
-import pieces.ChessPiece;
-import pieces.ChessPieceUtils;
-import pieces.PiecePawn;
-import pieces.Position;
+import pieces.*;
 
 import java.util.Scanner;
 
 public class Play {
 
     public static void main(String[] args) {
-        ChessPiece[] player1Pieces = new ChessPiece[5];
-        ChessPiece[] player2Pieces = new ChessPiece[5];
         Scanner scanner = new Scanner(System.in);
         int rowSize, colSize;
         System.out.println("Enter the Row Size of the Chess Board");
         rowSize = scanner.nextInt();
         System.out.println("Enter the Column Size of the Chess Board");
         colSize = scanner.nextInt();
+        ChessPiece[] player1Pieces = new ChessPiece[colSize];
+        ChessPiece[] player2Pieces = new ChessPiece[colSize];
         ChessPieceUtils.player1PiecesLeft = colSize;
         ChessPieceUtils.player2PiecesLeft = colSize;
         scanner.nextLine();
@@ -30,7 +27,7 @@ public class Play {
                 name = scanner.nextLine();
                 name = name.trim();
             }
-            player1Pieces[i] = new PiecePawn(name, ChessPieceUtils.player1, new Position(rowSize - 1, i));
+            player1Pieces[i] = new PieceCastle(name, ChessPieceUtils.player1, new Position(rowSize - 1, i));
         }
         System.out.println();
         System.out.println("Enter Player 2 (P2) Pieces");
@@ -43,7 +40,7 @@ public class Play {
                 name = scanner.nextLine();
                 name = name.trim();
             }
-            player2Pieces[i] = new PiecePawn(name, ChessPieceUtils.player2, new Position(0, i));
+            player2Pieces[i] = new PieceCastle(name, ChessPieceUtils.player2, new Position(0, i));
         }
         ChessBoard chessBoard = new ChessBoard(player1Pieces, player2Pieces, rowSize, colSize);
         while (ChessPieceUtils.player1PiecesLeft > 0 && ChessPieceUtils.player2PiecesLeft > 0) {

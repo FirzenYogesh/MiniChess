@@ -19,7 +19,7 @@ public class PieceDummy extends ChessPiece {
     }
 
     @Override
-    public boolean move(ChessPiece[][] blocks, String move, String player) {
+    public boolean move(ChessPiece[][] block, String move) {
         return false;
     }
 

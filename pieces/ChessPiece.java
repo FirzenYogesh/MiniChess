@@ -20,7 +20,7 @@ public abstract class ChessPiece {
 
     public abstract void prepareMove(String move);
 
-    public abstract boolean move(ChessPiece[][] blocks, String move, String player);
+    public abstract boolean move(ChessPiece[][] block, String move);
 
     //abstract boolean isMoveWithinTheBoard();
 
@@ -51,16 +51,18 @@ public abstract class ChessPiece {
     }*/
 
     public void killPiece(ChessPiece piece) {
-        piece.isKilled = true;
-        piece.currentPosition = Position.out;
-        piece.newPosition = Position.out;
-        piece.oldPosition = Position.out;
-        if (piece.player.equals(ChessPieceUtils.player1)) {
-            ChessPieceUtils.player1PiecesLeft--;
-            ChessPieceUtils.player2Score++;
-        } else {
-            ChessPieceUtils.player2PiecesLeft--;
-            ChessPieceUtils.player1Score++;
+        if (!player.equals(piece.player) && !piece.name.equals("-")) {
+            piece.isKilled = true;
+            piece.currentPosition = Position.out;
+            piece.newPosition = Position.out;
+            piece.oldPosition = Position.out;
+            if (piece.player.equals(ChessPieceUtils.player1)) {
+                ChessPieceUtils.player1PiecesLeft--;
+                ChessPieceUtils.player2Score++;
+            } else {
+                ChessPieceUtils.player2PiecesLeft--;
+                ChessPieceUtils.player1Score++;
+            }
         }
     }
 
@@ -91,5 +93,9 @@ public abstract class ChessPiece {
 
     public String getPlayer() {
         return player;
+    }
+
+    boolean isPlayer1() {
+        return player.equals(ChessPieceUtils.player1);
     }
 }
