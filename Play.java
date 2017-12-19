@@ -7,20 +7,18 @@ public class Play {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int rowSize, colSize;
-        System.out.println("Enter the Row Size of the Chess Board");
-        rowSize = scanner.nextInt();
-        System.out.println("Enter the Column Size of the Chess Board");
-        colSize = scanner.nextInt();
-        ChessPiece[] player1Pieces = new ChessPiece[colSize];
-        ChessPiece[] player2Pieces = new ChessPiece[colSize];
-        ChessPieceUtils.player1PiecesLeft = colSize;
-        ChessPieceUtils.player2PiecesLeft = colSize;
+        int numberOfPieces;
+        System.out.println("Enter the number of pieces");
+        numberOfPieces = scanner.nextInt();
+        ChessPiece[] player1Pieces = new ChessPiece[numberOfPieces];
+        ChessPiece[] player2Pieces = new ChessPiece[numberOfPieces];
+        ChessPieceUtils.player1PiecesLeft = numberOfPieces;
+        ChessPieceUtils.player2PiecesLeft = numberOfPieces;
         scanner.nextLine();
         System.out.println();
         System.out.println("Enter Player 1 (P1) Pieces");
         ArrayList<String> tempList = new ArrayList<>();
-        for (int i = 0; i < colSize; i++) {
+        for (int i = 0; i < numberOfPieces; i++) {
             System.out.println("Enter the name of the piece");
             String name = scanner.nextLine();
             name = name.trim();
@@ -35,12 +33,12 @@ public class Play {
                 name = name.trim();
             }
             tempList.add(name);
-            player1Pieces[i] = new PieceCastle(name, ChessPieceUtils.player1, new Position(rowSize - 1, i));
+            player1Pieces[i] = new PieceCastle(name, ChessPieceUtils.player1, new Position(numberOfPieces - 1, i));
         }
         tempList = new ArrayList<>();
         System.out.println();
         System.out.println("Enter Player 2 (P2) Pieces");
-        for (int i = colSize - 1; i >= 0; i--) {
+        for (int i = numberOfPieces - 1; i >= 0; i--) {
             System.out.println("Enter the name of the piece");
             String name = scanner.nextLine();
             name = name.trim();
@@ -57,7 +55,7 @@ public class Play {
             tempList.add(name);
             player2Pieces[i] = new PieceCastle(name, ChessPieceUtils.player2, new Position(0, i));
         }
-        ChessBoard chessBoard = new ChessBoard(player1Pieces, player2Pieces, rowSize, colSize);
+        ChessBoard chessBoard = new ChessBoard(player1Pieces, player2Pieces, numberOfPieces, numberOfPieces);
         while (ChessPieceUtils.player1PiecesLeft > 0 && ChessPieceUtils.player2PiecesLeft > 0) {
             System.out.println();
             System.out.println();
