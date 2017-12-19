@@ -1,5 +1,6 @@
 import pieces.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Play {
@@ -18,6 +19,7 @@ public class Play {
         scanner.nextLine();
         System.out.println();
         System.out.println("Enter Player 1 (P1) Pieces");
+        ArrayList<String> tempList = new ArrayList<>();
         for (int i = 0; i < colSize; i++) {
             System.out.println("Enter the name of the piece");
             String name = scanner.nextLine();
@@ -27,8 +29,15 @@ public class Play {
                 name = scanner.nextLine();
                 name = name.trim();
             }
+            while (tempList.contains(name)) {
+                System.out.println("Please enter a Unique Character name");
+                name = scanner.nextLine();
+                name = name.trim();
+            }
+            tempList.add(name);
             player1Pieces[i] = new PieceCastle(name, ChessPieceUtils.player1, new Position(rowSize - 1, i));
         }
+        tempList = new ArrayList<>();
         System.out.println();
         System.out.println("Enter Player 2 (P2) Pieces");
         for (int i = colSize - 1; i >= 0; i--) {
@@ -40,6 +49,12 @@ public class Play {
                 name = scanner.nextLine();
                 name = name.trim();
             }
+            while (tempList.contains(name)) {
+                System.out.println("Please enter a Unique Character name");
+                name = scanner.nextLine();
+                name = name.trim();
+            }
+            tempList.add(name);
             player2Pieces[i] = new PieceCastle(name, ChessPieceUtils.player2, new Position(0, i));
         }
         ChessBoard chessBoard = new ChessBoard(player1Pieces, player2Pieces, rowSize, colSize);
