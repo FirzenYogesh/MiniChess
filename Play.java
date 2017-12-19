@@ -46,7 +46,7 @@ public class Play {
             player2Pieces[i] = new PiecePawn(name, ChessPieceUtils.player2, new Position(0, i));
         }
         ChessBoard chessBoard = new ChessBoard(player1Pieces, player2Pieces, rowSize, colSize);
-        while (ChessPieceUtils.player1PiecesLeft > 0 || ChessPieceUtils.player2PiecesLeft > 0) {
+        while (ChessPieceUtils.player1PiecesLeft > 0 && ChessPieceUtils.player2PiecesLeft > 0) {
             System.out.println();
             System.out.println();
             System.out.println();
@@ -55,6 +55,16 @@ public class Play {
             System.out.println((chessBoard.isPlayer1Move ? ChessPieceUtils.player1 : ChessPieceUtils.player2) + " move: \n");
             String command = scanner.nextLine();
             chessBoard.moveAPiece(command);
+            System.out.println("Status : ");
+            System.out.println("Player 1 Pieces left: " + ChessPieceUtils.player1PiecesLeft);
+            System.out.println("Player 2 Pieces left: " + ChessPieceUtils.player2PiecesLeft);
+        }
+        System.out.println();
+        System.out.println();
+        if (ChessPieceUtils.player1PiecesLeft == 0) {
+            System.out.println("Player 2 Wins");
+        } else {
+            System.out.println("Player 1 Wins");
         }
     }
 }

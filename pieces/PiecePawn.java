@@ -15,7 +15,7 @@ public class PiecePawn extends ChessPiece {
         if (isMoveValid(move)) {
             oldPosition = new Position(currentPosition);
             currentPosition = new Position(newPosition);
-            System.out.println(currentPosition);
+            //System.out.println(currentPosition);
             return true;
         } else {
             System.out.println("Invalid move. Pawn should be commanded only one of the following: ");
