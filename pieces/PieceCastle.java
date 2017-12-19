@@ -21,9 +21,10 @@ public class PieceCastle extends ChessPiece {
     }
 
     @Override
-    boolean isMoveValid(String move) {
+    public boolean isMoveValid(String move) {
         return false;
     }
+
 
     @Override
     void getNewPosition(String move) {

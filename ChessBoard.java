@@ -53,21 +53,27 @@ public class ChessBoard {
             if (isPlayer1Move) {
                 for (ChessPiece player1Piece : player1Pieces) {
                     if (player1Piece.getName().toLowerCase().equals(name.toLowerCase())) {
-                        player1Piece.prepareMove(move);
-                        if (isMoveWithinTheBoard(player1Piece)) {
-                            if (hasFriendly(player1Piece.getNewPosition(), player1Piece)) {
-                                System.out.println("Invalid Move. Friendly Piece on the way");
-                            } else {
-                                if (hasEnemy(player1Piece.getNewPosition(), player1Piece)) {
-                                    player1Piece.killPiece(getEnemy(player1Piece.getNewPosition()));
-                                }
-                                moveSuccessful = player1Piece.move(chessBlocks, move, ChessPieceUtils.player1);
-                                oldPosition = player1Piece.getOldPosition();
-                                currentPosition = player1Piece.getCurrentPosition();
-                            }
-                            pieceMoved = player1Piece;
+                        if (isPieceRemoved(player1Piece)) {
+                            System.out.println("Invalid Move. This soldier is dead :(");
                         } else {
-                            System.out.println("Invalid Move. Move goes out of the board");
+                            if (player1Piece.isMoveValid(move)) {
+                                player1Piece.prepareMove(move);
+                                if (isMoveWithinTheBoard(player1Piece)) {
+                                    if (hasFriendly(player1Piece.getNewPosition(), player1Piece)) {
+                                        System.out.println("Invalid Move. Friendly Piece on the way");
+                                    } else {
+                                        if (hasEnemy(player1Piece.getNewPosition(), player1Piece)) {
+                                            player1Piece.killPiece(getEnemy(player1Piece.getNewPosition()));
+                                        }
+                                        moveSuccessful = player1Piece.move(chessBlocks, move, ChessPieceUtils.player1);
+                                        oldPosition = player1Piece.getOldPosition();
+                                        currentPosition = player1Piece.getCurrentPosition();
+                                    }
+                                    pieceMoved = player1Piece;
+                                } else {
+                                    System.out.println("Invalid Move. Move goes out of the board");
+                                }
+                            }
                         }
                         break;
                     }
@@ -75,21 +81,27 @@ public class ChessBoard {
             } else {
                 for (ChessPiece player2Piece : player2Pieces) {
                     if (player2Piece.getName().toLowerCase().equals(name.toLowerCase())) {
-                        player2Piece.prepareMove(move);
-                        if (isMoveWithinTheBoard(player2Piece)) {
-                            if (hasFriendly(player2Piece.getNewPosition(), player2Piece)) {
-                                System.out.println("Invalid Move. Friendly Piece on the way");
-                            } else {
-                                if (hasEnemy(player2Piece.getNewPosition(), player2Piece)) {
-                                    player2Piece.killPiece(getEnemy(player2Piece.getNewPosition()));
-                                }
-                                moveSuccessful = player2Piece.move(chessBlocks, move, ChessPieceUtils.player2);
-                                oldPosition = player2Piece.getOldPosition();
-                                currentPosition = player2Piece.getCurrentPosition();
-                            }
-                            pieceMoved = player2Piece;
+                        if (isPieceRemoved(player2Piece)) {
+                            System.out.println("Invalid Move. This soldier is dead :(");
                         } else {
-                            System.out.println("Invalid Move. Move goes out of the board");
+                            if (player2Piece.isMoveValid(move)) {
+                                player2Piece.prepareMove(move);
+                                if (isMoveWithinTheBoard(player2Piece)) {
+                                    if (hasFriendly(player2Piece.getNewPosition(), player2Piece)) {
+                                        System.out.println("Invalid Move. Friendly Piece on the way");
+                                    } else {
+                                        if (hasEnemy(player2Piece.getNewPosition(), player2Piece)) {
+                                            player2Piece.killPiece(getEnemy(player2Piece.getNewPosition()));
+                                        }
+                                        moveSuccessful = player2Piece.move(chessBlocks, move, ChessPieceUtils.player2);
+                                        oldPosition = player2Piece.getOldPosition();
+                                        currentPosition = player2Piece.getCurrentPosition();
+                                    }
+                                    pieceMoved = player2Piece;
+                                } else {
+                                    System.out.println("Invalid Move. Move goes out of the board");
+                                }
+                            }
                         }
                         break;
                     }
@@ -141,5 +153,7 @@ public class ChessBoard {
         return chessBlocks[position.getRow()][position.getColumn()];
     }
 
-
+    private boolean isPieceRemoved(ChessPiece piece) {
+        return piece.isKilled();
+    }
 }

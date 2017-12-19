@@ -17,9 +17,6 @@ public class PiecePawn extends ChessPiece {
             currentPosition = new Position(newPosition);
             //System.out.println(currentPosition);
             return true;
-        } else {
-            System.out.println("Invalid move. Pawn should be commanded only one of the following: ");
-            System.out.println("f or b or l or r");
         }
         return false;
     }
@@ -38,6 +35,8 @@ public class PiecePawn extends ChessPiece {
             case "r":
                 return true;
             default:
+                System.out.println("Invalid move. Pawn should be commanded only one of the following: ");
+                System.out.println("f or b or l or r");
                 return false;
         }
     }

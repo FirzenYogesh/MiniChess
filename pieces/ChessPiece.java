@@ -24,7 +24,7 @@ public abstract class ChessPiece {
 
     //abstract boolean isMoveWithinTheBoard();
 
-    abstract boolean isMoveValid(String move);
+    public abstract boolean isMoveValid(String move);
 
     abstract void getNewPosition(String move);
 
